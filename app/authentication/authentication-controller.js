@@ -60,7 +60,6 @@ exports.postLogin = function (req, res) {
               next(err, null)
             }
             else{
-              console.log("updatedUserObj:::"+updatedUserObj);
               next(null, { status: 'info', errCode: 1011, msg: 'Invalid password'/*, warning: { maxAttempt: 3, attempted: updatedUserObj.noOfAttemptsWithWrongPwd} */})
             }
           });
