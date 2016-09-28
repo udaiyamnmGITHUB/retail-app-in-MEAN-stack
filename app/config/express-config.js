@@ -1,9 +1,8 @@
 const bodyParser = require('body-parser');
 const path = require('path');
 const flash = require('express-flash');
-const session = require("express-session");
 const expressValidator = require('express-validator');
-const MongoStore = require('connect-mongo')(session);
+
 //var cookieParser = require('cookie-parser');
 
 module.exports = function (app, express) {
@@ -27,15 +26,5 @@ module.exports = function (app, express) {
 
     app.use(bodyParser.json()); // for parsing application/json
     app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-
-    app.use(session({
-    resave: true,
-    saveUninitialized: true,
-    secret: process.env.SESSION_SECRET,
-    store: new MongoStore({
-        url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
-        autoReconnect: true
-    })
-    }));
 
 };

@@ -1,46 +1,13 @@
-const passport = require("passport");
-const session = require("express-session");
+const LocalStrategy = require('passport-local').Strategy;
+const async = require('async');
 const flash = require('express-flash');
-const MongoStore = require('connect-mongo')(session);
-var configAuth = require('./authentication-config');
+const User = require("../authentication/user-model");
 
-module.exports = function (app) {
-
-    // =========================================================================
-    // passport session setup ==================================================
-    // =========================================================================
-    // required for persistent login sessions
-    // passport needs ability to serialize and unserialize users out of session
-
-    app.use(session({
-        resave: true,
-        saveUninitialized: true,
-        secret: process.env.SESSION_SECRET,
-        store: new MongoStore({
-            url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
-            autoReconnect: true
-        })
-    }));
-
-    app.use(passport.initialize());
-    app.use(passport.session()); // persistent login sessions
-    app.use(flash()); // use connect-flash for flash messages stored in session
-
-    passport.serializeUser(function (user, done) {
-        done(null, user);
-    });
-
-    passport.deserializeUser(function (user, done) {
-        done(null, user);
-    });
-    
-    require("./passport-local-sign-in")(passport);
-    require("./passport-local-sign-up")(passport);
-
-    /**
- * Sign in using Email and Password.
- */
-   /* passport.use(new LocalStrategy({ usernameField: 'username' }, function (username, password, done) {
+/**
+* Sign in using Email and Password.
+*/
+module.exports = function (passport) {
+    passport.use('local-sign-in', new LocalStrategy({ usernameField: 'username' }, function (username, password, done) {
 
         var finalCallback = function (err, result) {
             if (err) {
@@ -90,7 +57,7 @@ module.exports = function (app) {
                                     next(err, null)
                                 }
                                 else {
-                                    next(null, { status: 'info', errCode: 1011, msg: 'Invalid password'})
+                                    next(null, { status: 'info', errCode: 1011, msg: 'Invalid password'/*, warning: { maxAttempt: 3, attempted: updatedUserObj.noOfAttemptsWithWrongPwd} */ })
                                 }
                             });
                     }
@@ -99,7 +66,5 @@ module.exports = function (app) {
 
             finalCallback
         );
-    }));*/
+    }));
 }
-
-
