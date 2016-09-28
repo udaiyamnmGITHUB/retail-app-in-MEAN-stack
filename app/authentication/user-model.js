@@ -31,7 +31,6 @@ userSchema.methods.validPassword = function(password) {
 
 userSchema.pre('save', function (next) {
   const user = this;
-  console.log("user:::::" + user);
   user.local.password = user.generateHash(user.local.password);
   user.local.passwordExpiryInDate = user.setExpiryDateForPwd();
   next();

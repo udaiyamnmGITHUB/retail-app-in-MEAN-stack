@@ -1,19 +1,15 @@
 const path = require("path");
 const express = require("express");
 const router = express.Router();
-const session = require("express-session");
-const expressValidator = require('express-validator');
-const bodyParser = require('body-parser');
-const flash = require('express-flash');
 const passport = require("passport");
-const mongoose = require("mongoose");
-const MongoStore = require('connect-mongo')(session);
 const  dotenv = require("dotenv");
-
 dotenv.load({ path: '.env.config' });
 
+const dbObj = require('./app/config/mongo-db-config');
 
-// app settings
+const app = express();
+dbObj.northWindRetailMongoDb();
+
 
 // catch the uncaught errors that weren't wrapped in a domain or try catch statement
 // do not use this in modules, but only in applications, as otherwise we could have multiple of these bound
@@ -22,30 +18,11 @@ process.on('uncaughtException', function(err) {
     console.log('process error is caught' + err.stack);
 });
 
-const app = express();
-app.set('port', process.env.port || 3000);
-app.set('view engine', 'pug');
-app.set('views', path.join(__dirname, './app/views'));
-app.use(session({
-  resave: true,
-  saveUninitialized: true,
-  secret: process.env.SESSION_SECRET
-}));
-app.use(flash());
-app.use(expressValidator());
+// connecting to northwind db
 
-app.use(bodyParser.json()); // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-
-// connecting to northwind DB
-
-mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI, function(){
-    console.log('mongodb is connected with' + process.env.MONGODB_URI);
-}); 
-mongoose.connection.on('error', function(){
-    console.log('error in connection with  ' + process.env.MONGODB_URI);
-      process.exit(1);
-});
+//northWindRetailMongoDb.connectToDb();
+require('./app/config/express-config')(app, express);
+require('./app/config/passport-config')(app);
 
 //Routes
 var authenticationRoutesConfig = require('./app/authentication/authentication-routes');

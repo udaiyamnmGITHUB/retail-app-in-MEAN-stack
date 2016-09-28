@@ -13,8 +13,6 @@ exports.postLogin = function (req, res) {
 
   // async starts here
   var finalCallback = function (err, result) {
-     console.log("err:::"+err);
-     console.log("result:::"+result);
       if (err) {
         res.json({ status: 'error', errCode: 1010, msg: 'something went wrong, could not sigin' });
       }
@@ -45,10 +43,8 @@ exports.postLogin = function (req, res) {
     },
 
     function (userObj, next) {
-      console.log("userObj----userObj.local.password:::"+  userObj.local.password);
-      console.log("input - .password:::"+  req.body.password);
+      
       var validPassword = userObj.validPassword(req.body.password, userObj.local.password);
-      console.log("validPassword:::"+validPassword);
       
       if (validPassword) {
         next(null, { status: 'success', userObj: userObj })
