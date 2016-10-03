@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt-nodejs');
 
 const userSchema = new mongoose.Schema({
     local:{
-        username : {type : String, required:true, unique:true, index:true},
+        username : {type : String, required:true, unique:true, index:true, ref: 'userProfile'}, 
         password : {type: String, required:true},
         passwordExpiryInDate : {type:Date, default: Date.now()},
         isPasswordLocked: {type: Boolean, default: false},
