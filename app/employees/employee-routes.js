@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // const express = require("express");
 // const router = express.Router();
 
@@ -31,4 +32,21 @@ router.get('/getemployees',function(req,res){
 
     })
 })
+=======
+const express = require("express");
+const router = express.Router();
+
+router.get('/', function (req, res) {
+    res.send('Employee home page is ready');
+});
+
+router.get('/addEmployee', function(req, res) {
+  res.send('addEmployee');
+});
+// define the about route
+router.post('/getEmployeeList', function(req, res) {
+  res.send('getEmployeeList');
+});
+
+>>>>>>> f5685128291c432629f13af84a1c007f292d837d
 module.exports = router;
