@@ -18,13 +18,10 @@ module.exports = function (app, express) {
     app.set('view engine', 'pug');// set up pug for templating
 
 
-<<<<<<< HEAD
+
     app.use(express.static(path.join(__dirname + '/../app')));
     app.set('views', path.join(__dirname, '../views'));
-=======
-    app.use(express.static(path.join(__dirname + '/../views')));
-    app.set('views', path.join(__dirname, './app/views'));
->>>>>>> f5685128291c432629f13af84a1c007f292d837d
+
 
     app.use(flash());
     app.use(expressValidator());

@@ -27,7 +27,6 @@ require('./app/config/passport-config')(app);
 //Routes
 var authenticationRoutesConfig = require('./app/authentication/authentication-routes');
 var employeeRoutes = require('./app/employees/employee-routes');
-<<<<<<< HEAD
 var categoryRoutes = require('./app/categories/categories-routes');
 var ordersRoutes = require('./app/orders/orders-routes');
 var territoriesRoutes = require('./app/territories/territories-routes');
@@ -46,11 +45,8 @@ app.use('/shippers', shippersRoutes);
 app.use('/regions', regionsRoutes);
 app.use('/products', productsRoutes);
 
-=======
 
-app.use('/auth', authenticationRoutesConfig);
-app.use('/employee', employeeRoutes);
->>>>>>> f5685128291c432629f13af84a1c007f292d837d
+
 
 app.get('/', function(req, res){
     res.render('home', {title:'Home'});
