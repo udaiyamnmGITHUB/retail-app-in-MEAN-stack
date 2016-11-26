@@ -4,14 +4,15 @@ var mapFun = function(){
 }
     
 var redFun = function(OrderID, obj){
+    var temp = 0;
     for(var i=0; i < obj.length ; i++){
-        var total =  parseInt(obj[i].UnitPrice) *   parseInt(obj[i].Quantity) * ( 1 - parseInt(obj[i].Discount));
+        var total =  parseFloat(obj[i].UnitPrice) *   parseFloat(obj[i].Quantity) * ( 1 - parseFloat(obj[i].Discount));
+        temp = temp + total;
     }
-    return total
+    return temp
 }
 
 var final = function(key, value){
      return value
 }
 db.order_details.mapReduce(mapFun, redFun, {out: {inline: 1} , sort : this.OrderID,	finalize : final})
-
