@@ -30,6 +30,7 @@ var authenticationRoutesConfig = require('./app/authentication/authentication-ro
 var employeeRoutes = require('./app/employees/employee-routes');
 var categoryRoutes = require('./app/categories/categories-routes');
 var ordersRoutes = require('./app/orders/orders-routes');
+var orderDetails = require('./app/order-details/order-details-routes');
 var territoriesRoutes = require('./app/territories/territories-routes');
 var suppliersRoutes = require('./app/suppliers/suppliers-routes');
 var shippersRoutes = require('./app/shippers/shippers-routes');
@@ -40,6 +41,7 @@ app.use('/auth', authenticationRoutesConfig);
 app.use('/employee', employeeRoutes);
 app.use('/categories', categoryRoutes);
 app.use('/orders', ordersRoutes);
+app.use('/orderDetails', orderDetails);
 app.use('/territories', territoriesRoutes);
 app.use('/suppliers', suppliersRoutes);
 app.use('/shippers', shippersRoutes);
