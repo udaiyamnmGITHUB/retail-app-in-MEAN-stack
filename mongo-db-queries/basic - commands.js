@@ -1,9 +1,26 @@
 
 mongo host:port/db -u user -p pass
 
-mongo ds149567.mlab.com:49567/northwind -u mithra -p mithra
+mongo ds149567.mlab.com:49567/northwind -u udaiyamnm -p udaiyamnm
 
-mongoimport.exe -h ds149567.mlab.com:49567 -d northwind -c customers -u mithra -p mithra --file ./json/customers.json --jsonArray
+
+mongoimport.exe -h ds157549.mlab.com:57549 -d northwind -c customers -u udaiyamnm -p udaiyamnm --file ./json/customers.json --jsonArray
+
+mongoimport.exe -h ds157549.mlab.com:57549 -d northwind -c categories -u udaiyamnm -p udaiyamnm --file ./json/categories.json --jsonArray
+mongoimport.exe -h ds157549.mlab.com:57549 -d northwind -c employee_territories -u udaiyamnm -p udaiyamnm --file ./json/employee_territories.json --jsonArray
+mongoimport.exe -h ds157549.mlab.com:57549 -d northwind -c employees -u udaiyamnm -p udaiyamnm --file ./json/employees.json --jsonArray
+mongoimport.exe -h ds157549.mlab.com:57549 -d northwind -c northwind -u udaiyamnm -p udaiyamnm --file ./json/northwind.json --jsonArray
+mongoimport.exe -h ds157549.mlab.com:57549 -d northwind -c order_details -u udaiyamnm -p udaiyamnm --file ./json/order_details.json --jsonArray
+mongoimport.exe -h ds157549.mlab.com:57549 -d northwind -c orders -u udaiyamnm -p udaiyamnm --file ./json/orders.json --jsonArray
+mongoimport.exe -h ds157549.mlab.com:57549 -d northwind -c products -u udaiyamnm -p udaiyamnm --file ./json/products.json --jsonArray
+mongoimport.exe -h ds157549.mlab.com:57549 -d northwind -c regions -u udaiyamnm -p udaiyamnm --file ./json/regions.json --jsonArray
+mongoimport.exe -h ds157549.mlab.com:57549 -d northwind -c shippers -u udaiyamnm -p udaiyamnm --file ./json/shippers.json --jsonArray
+mongoimport.exe -h ds157549.mlab.com:57549 -d northwind -c suppliers -u udaiyamnm -p udaiyamnm --file ./json/suppliers.json --jsonArray
+mongoimport.exe -h ds157549.mlab.com:57549 -d northwind -c categories -u udaiyamnm -p udaiyamnm --file ./json/categories.json --jsonArray
+mongoimport.exe -h ds157549.mlab.com:57549 -d northwind -c territories -u udaiyamnm -p udaiyamnm --file ./json/territories.json --jsonArray
+mongoimport.exe -h ds157549.mlab.com:57549 -d northwind -c test -u udaiyamnm -p udaiyamnm --file ./json/test.json --jsonArray
+
+
 
 
 SELECT person, SUM(score), AVG(score), MIN(score), MAX(score), COUNT(*) 
